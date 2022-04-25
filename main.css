@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid-wrapper {
+    outline-style: solid;
+}
+
+.grid-container {
+    height: 600px;
+    width: 600px;
+    display: grid;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}
+
+.grid {
+    border: 1px solid grey;
+}
+
+.make-grid-btn, .reset-grid-btn {
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 10px;
+}
