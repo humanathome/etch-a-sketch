@@ -3,7 +3,6 @@ let number = 16;
 const numberOfCells = number * number;
 const gridContainer = document.querySelector('div.grid-container');
 
-
 const makeGridBtn = document.createElement('button');
 makeGridBtn.classList.add('make-grid-btn');
 makeGridBtn.textContent = "Generate grid";
@@ -15,7 +14,8 @@ function generateGrid() {
   for (let i=1; i <= numberOfCells; i++) {
     let cell = document.createElement('div');
     cell.classList.add(`grid`);
-    cell.addEventListener('mouseover', randColor);
+    cell.addEventListener('mouseover', changeBgColor);
+    cell.addEventListener('mousedown', changeBgColor);
     gridContainer.appendChild(cell);
   }
   makeGridBtn.removeEventListener('click', generateGrid);
@@ -36,14 +36,32 @@ resetGridBtn.addEventListener('click', () => {
   makeGridBtn.addEventListener('click', generateGrid);
 })
 
-// pick a random color
+// generate a random color
 let r;
 let g;
 let b;
 
-function randColor() {
+function generateRandColor() {
   r = Math.floor(Math.random() * 256 );
   g = Math.floor(Math.random() * 256 );
   b = Math.floor(Math.random() * 256 );
-  this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+  let bkgColor;
+  bkgColor = `rgb(${r}, ${g}, ${b})`;
+  return bkgColor;
+}
+
+
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true);
+document.body.addEventListener('mouseup', (e) => {
+  e.preventDefault();
+  mouseDown = false;
+});
+
+
+function changeBgColor(e) {
+  e.preventDefault();
+  if (e.type === 'mouseover' && mouseDown) {
+    this.style.backgroundColor = generateRandColor();
+  }
 }

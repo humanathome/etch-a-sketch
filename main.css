@@ -17,10 +17,6 @@ body {
     background-color: white;
 }
 
-.grid {
-    border: 1px solid grey;
-}
-
 .make-grid-btn, .reset-grid-btn {
     background-color: dodgerblue;
     border: none;
@@ -30,4 +26,5 @@ body {
     cursor: pointer;
     padding: 10px 20px;
     margin: 10px;
+    width: 150px;
 }
