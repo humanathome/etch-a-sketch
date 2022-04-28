@@ -1,35 +1,47 @@
-let number = 16;
-// calculate total number of cells to be inserted
-const numberOfCells = number * number;
-const gridContainer = document.querySelector('div.grid-container');
+const gridSizeSlider = document.querySelector('.slider');
+let gridSize = (gridSizeSlider.valueAsNumber);
+let totalNumOfCells = gridSize * gridSize;
 
+gridSizeSlider.oninput = getValue;
+let rangeValueDisplay = document.querySelector('.range-slider-value');
+rangeValueDisplay.textContent = gridSize;
+
+function getValue() {
+  gridSize = (gridSizeSlider.valueAsNumber);
+  totalNumOfCells = gridSize * gridSize;
+  rangeValueDisplay.textContent = gridSize;
+}
+
+// controls container
+const controlsContainer = document.querySelector('.controls-container');
+// create grid button
 const makeGridBtn = document.createElement('button');
 makeGridBtn.classList.add('make-grid-btn');
 makeGridBtn.textContent = "Generate grid";
 makeGridBtn.addEventListener('click', generateGrid);
-document.body.appendChild(makeGridBtn);
+controlsContainer.appendChild(makeGridBtn);
 
+// create grid
+const gridContainer = document.querySelector('.grid-container');
 
 function generateGrid() {
-  for (let i=1; i <= numberOfCells; i++) {
-    let cell = document.createElement('div');
+  for (let i=1; i <= totalNumOfCells; i++) {
+    const cell = document.createElement('div');
     cell.classList.add(`grid`);
     cell.addEventListener('mouseover', changeBgColor);
     cell.addEventListener('mousedown', changeBgColor);
     gridContainer.appendChild(cell);
   }
   makeGridBtn.removeEventListener('click', generateGrid);
+  gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+  gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 }
-
-// set grid layout size
-gridContainer.style.gridTemplateColumns = `repeat(${number}, 1fr)`;
-gridContainer.style.gridTemplateRows = `repeat(${number}, 1fr)`;
 
 // clear grid
 const resetGridBtn = document.createElement('button');
 resetGridBtn.classList.add('reset-grid-btn');
 resetGridBtn.textContent = "Clear grid";
-document.body.appendChild(resetGridBtn);
+controlsContainer.appendChild(resetGridBtn);
 
 resetGridBtn.addEventListener('click', () => {
   gridContainer.replaceChildren();
@@ -45,23 +57,24 @@ function generateRandColor() {
   r = Math.floor(Math.random() * 256 );
   g = Math.floor(Math.random() * 256 );
   b = Math.floor(Math.random() * 256 );
-  let bkgColor;
-  bkgColor = `rgb(${r}, ${g}, ${b})`;
-  return bkgColor;
+  return `rgb(${r}, ${g}, ${b})`;
 }
-
 
 let mouseDown = false
-document.body.onmousedown = () => (mouseDown = true);
-document.body.addEventListener('mouseup', (e) => {
+gridContainer.addEventListener('mousedown', (e) => {
   e.preventDefault();
-  mouseDown = false;
+  (mouseDown = true);
 });
 
+gridContainer.addEventListener('mouseup', (e) => {
+  e.preventDefault();
+  mouseDown = false
+});
 
 function changeBgColor(e) {
-  e.preventDefault();
-  if (e.type === 'mouseover' && mouseDown) {
-    this.style.backgroundColor = generateRandColor();
-  }
+  // stop execution if both mouseover and mousedown events are not present
+  if (e.type === 'mouseover' && !mouseDown) return;
+  this.style.backgroundColor = generateRandColor();
 }
+
+window.onload = generateGrid;

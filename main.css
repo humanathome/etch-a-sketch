@@ -6,6 +6,7 @@ body {
 
 .grid-wrapper {
     outline-style: solid;
+    margin: 20px;
 }
 
 .grid-container {
@@ -15,6 +16,21 @@ body {
     padding: 0;
     margin: 0;
     background-color: white;
+}
+
+.grid {
+    border: 1px solid #dbdbdb;
+}
+
+.controls-container {
+    display: flex;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 240px;
 }
 
 .make-grid-btn, .reset-grid-btn {
