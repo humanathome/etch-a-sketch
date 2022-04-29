@@ -32,7 +32,7 @@ function generateGrid() {
     cell.addEventListener('mousedown', changeBgColor);
     gridContainer.appendChild(cell);
   }
-  makeGridBtn.removeEventListener('click', generateGrid);
+  makeGridBtn.disabled = true;
   gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
   gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 }
@@ -45,7 +45,7 @@ controlsContainer.appendChild(resetGridBtn);
 
 resetGridBtn.addEventListener('click', () => {
   gridContainer.replaceChildren();
-  makeGridBtn.addEventListener('click', generateGrid);
+  makeGridBtn.disabled = false;
 })
 
 // generate a random color
