@@ -33,7 +33,7 @@ body {
     width: 240px;
 }
 
-.make-grid-btn, .reset-grid-btn {
+.reset-grid-btn {
     background-color: dodgerblue;
     border: none;
     border-radius: 8px;

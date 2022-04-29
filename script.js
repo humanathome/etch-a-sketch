@@ -1,29 +1,31 @@
 const gridSizeSlider = document.querySelector('.slider');
-let gridSize = (gridSizeSlider.valueAsNumber);
-let totalNumOfCells = gridSize * gridSize;
+const gridContainer = document.querySelector('.grid-container');
+const controlsContainer = document.querySelector('.controls-container');
+const clearGridBtn = document.querySelector('.reset-grid-btn');
 
-gridSizeSlider.oninput = getValue;
+let gridSize = gridSizeSlider.valueAsNumber;
+let totalNumOfCells = gridSize * gridSize;
 let rangeValueDisplay = document.querySelector('.range-slider-value');
 rangeValueDisplay.textContent = gridSize;
 
-function getValue() {
-  gridSize = (gridSizeSlider.valueAsNumber);
+// get new slider value and resize grid on slider mouseup
+gridSizeSlider.oninput = getSliderValue;
+gridSizeSlider.addEventListener('mouseup', clearGrid);
+
+function getSliderValue() {
+  gridSize = this.valueAsNumber;
   totalNumOfCells = gridSize * gridSize;
   rangeValueDisplay.textContent = gridSize;
 }
 
-// controls container
-const controlsContainer = document.querySelector('.controls-container');
-// create grid button
-const makeGridBtn = document.createElement('button');
-makeGridBtn.classList.add('make-grid-btn');
-makeGridBtn.textContent = "Generate grid";
-makeGridBtn.addEventListener('click', generateGrid);
-controlsContainer.appendChild(makeGridBtn);
+// clear grid
+clearGridBtn.addEventListener('click', clearGrid);
+function clearGrid() {
+  gridContainer.replaceChildren();
+  generateGrid();
+}
 
 // create grid
-const gridContainer = document.querySelector('.grid-container');
-
 function generateGrid() {
   for (let i=1; i <= totalNumOfCells; i++) {
     const cell = document.createElement('div');
@@ -32,34 +34,19 @@ function generateGrid() {
     cell.addEventListener('mousedown', changeBgColor);
     gridContainer.appendChild(cell);
   }
-  makeGridBtn.disabled = true;
   gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
   gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 }
 
-// clear grid
-const resetGridBtn = document.createElement('button');
-resetGridBtn.classList.add('reset-grid-btn');
-resetGridBtn.textContent = "Clear grid";
-controlsContainer.appendChild(resetGridBtn);
-
-resetGridBtn.addEventListener('click', () => {
-  gridContainer.replaceChildren();
-  makeGridBtn.disabled = false;
-})
-
 // generate a random color
-let r;
-let g;
-let b;
-
 function generateRandColor() {
-  r = Math.floor(Math.random() * 256 );
-  g = Math.floor(Math.random() * 256 );
-  b = Math.floor(Math.random() * 256 );
+  const r = Math.floor(Math.random() * 256 );
+  const g = Math.floor(Math.random() * 256 );
+  const b = Math.floor(Math.random() * 256 );
   return `rgb(${r}, ${g}, ${b})`;
 }
 
+// handle mouse events for coloring cells
 let mouseDown = false
 gridContainer.addEventListener('mousedown', (e) => {
   e.preventDefault();
