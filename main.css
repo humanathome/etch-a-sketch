@@ -1,15 +1,15 @@
 body {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-.grid-wrapper {
+#grid-wrapper {
     outline-style: solid;
     margin: 20px;
 }
 
-.grid-container {
+#grid-container {
     height: 600px;
     width: 600px;
     display: grid;
@@ -22,18 +22,19 @@ body {
     border: 1px solid #dbdbdb;
 }
 
-.controls-container {
+#controls-container {
     display: flex;
+    flex-direction: column;
 }
 
-.slider-container {
+#slider-container {
     display: flex;
     align-items: center;
     gap: 5px;
     width: 240px;
 }
 
-.reset-grid-btn {
+.btn {
     background-color: dodgerblue;
     border: none;
     border-radius: 8px;
@@ -43,4 +44,8 @@ body {
     padding: 10px 20px;
     margin: 10px;
     width: 150px;
+}
+
+.active {
+    border: 2px solid grey;
 }
