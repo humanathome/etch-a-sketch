@@ -51,7 +51,7 @@ gridContainer.addEventListener('mousedown', (e) => {
   mouseDown = true;
 });
 
-gridContainer.addEventListener('mouseup', () => {
+window.addEventListener('mouseup', () => {
   mouseDown = false;
 });
 
