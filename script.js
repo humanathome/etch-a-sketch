@@ -4,29 +4,30 @@ const clearGridBtn = document.getElementById('clear-grid-btn');
 
 let gridSize = gridSizeSlider.valueAsNumber;
 let totalNumOfCells = gridSize * gridSize;
-let rangeValueDisplay = document.getElementById('range-slider-value');
-rangeValueDisplay.textContent = gridSize;
+let sliderValueDisplay = document.getElementById('slider-value');
+sliderValueDisplay.textContent = gridSize;
 
 let activeMode;
 let activeModeDisplay = document.getElementById('active-mode-display');
 activeModeDisplay.textContent = `${activeMode}`;
 
-// get new slider value and resize grid on slider mouseup
-gridSizeSlider.oninput = getSliderValue;
-gridSizeSlider.addEventListener('mouseup', clearGrid);
-
+// get new slider value and generate new grid on slider mouseup
 function getSliderValue() {
   gridSize = this.valueAsNumber;
   totalNumOfCells = gridSize * gridSize;
-  rangeValueDisplay.textContent = gridSize;
+  sliderValueDisplay.textContent = gridSize;
 }
 
+gridSizeSlider.oninput = getSliderValue;
+gridSizeSlider.addEventListener('mouseup', clearGrid);
+
 // clear grid
-clearGridBtn.addEventListener('click', clearGrid);
 function clearGrid() {
   gridContainer.replaceChildren();
   generateGrid();
 }
+
+clearGridBtn.addEventListener('click', clearGrid);
 
 // create grid
 function generateGrid() {
@@ -50,8 +51,7 @@ gridContainer.addEventListener('mousedown', (e) => {
   mouseDown = true;
 });
 
-gridContainer.addEventListener('mouseup', (e) => {
-  e.preventDefault();
+gridContainer.addEventListener('mouseup', () => {
   mouseDown = false;
 });
 
@@ -80,29 +80,29 @@ function lighten(e) {
   let r = Number(rgbArray[0]);
   let g = Number(rgbArray[1]);
   let b = Number(rgbArray[2]);
-  r += 25;
-  g += 25;
-  b += 25;
+  r += 26;
+  g += 26;
+  b += 26;
   return `rgb(${r}, ${g}, ${b})`;
 }
 
 function darken(e) {
-    let currentColor = e.target.style.backgroundColor;
-    if (currentColor === '') currentColor = 'rgb(255, 255, 255)';
-    const rgbArray = currentColor.match(/\d+/g);
-    let r = Number(rgbArray[0]);
-    let g = Number(rgbArray[1]);
-    let b = Number(rgbArray[2]);
-    r -= 25;
-    g -= 25;
-    b -= 25;
-    return `rgb(${r}, ${g}, ${b})`;
+  let currentColor = e.target.style.backgroundColor;
+  if (currentColor === '') currentColor = 'rgb(255, 255, 255)';
+  const rgbArray = currentColor.match(/\d+/g);
+  let r = Number(rgbArray[0]);
+  let g = Number(rgbArray[1]);
+  let b = Number(rgbArray[2]);
+  r -= 26;
+  g -= 26;
+  b -= 26;
+  return `rgb(${r}, ${g}, ${b})`;
 }
 
 function generateRandColor() {
-  const r = Math.floor(Math.random() * 256 );
-  const g = Math.floor(Math.random() * 256 );
-  const b = Math.floor(Math.random() * 256 );
+  const r = Math.floor(Math.random() * 255 );
+  const g = Math.floor(Math.random() * 255 );
+  const b = Math.floor(Math.random() * 255 );
   return `rgb(${r}, ${g}, ${b})`;
 }
 
