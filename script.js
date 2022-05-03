@@ -107,45 +107,29 @@ function generateRandColor() {
 }
 
 // set different coloring modes on click
-function setLightenMode() {
-  activeMode = 'lighten';
-  activeModeDisplay.textContent = `${activeMode}`;
-}
-
-function setDarkenMode() {
-  activeMode = 'darken';
-  activeModeDisplay.textContent = `${activeMode}`;
-}
-
-function setBlackMode() {
-  activeMode = 'black';
-  activeModeDisplay.textContent = `${activeMode}`;
-}
-
-function setEraserMode() {
+document.getElementById('eraser-btn').onclick = () => {
   activeMode = 'eraser';
   activeModeDisplay.textContent = `${activeMode}`;
-}
+};
 
-function setRainbowMode() {
+document.getElementById('black-btn').onclick = () => {
+  activeMode = 'black';
+  activeModeDisplay.textContent = `${activeMode}`;
+};
+
+document.getElementById('lighten-btn').onclick = () => {
+  activeMode = 'lighten';
+  activeModeDisplay.textContent = `${activeMode}`;
+};
+
+document.getElementById('darken-btn').onclick = () => {
+  activeMode = 'darken';
+  activeModeDisplay.textContent = `${activeMode}`;
+};
+
+document.getElementById('rainbow-btn').onclick = () => {
   activeMode = 'rainbow';
   activeModeDisplay.textContent = `${activeMode}`;
-}
-
-// mode buttons
-const eraserBtn = document.getElementById('eraser-btn');
-eraserBtn.addEventListener('click', setEraserMode);
-
-const blackBtn = document.getElementById('black-btn');
-blackBtn.addEventListener('click', setBlackMode);
-
-const lightenBtn = document.getElementById('lighten-btn');
-lightenBtn.addEventListener('click', setLightenMode);
-
-const darkenBtn = document.getElementById('darken-btn');
-darkenBtn.addEventListener('click', setDarkenMode);
-
-const rainbowBtn = document.getElementById('rainbow-btn');
-rainbowBtn.addEventListener('click', setRainbowMode);
+};
 
 window.onload = generateGrid;
