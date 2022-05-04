@@ -1,13 +1,14 @@
 const gridSizeSlider = document.getElementById('grid-size-slider');
 const gridContainer = document.getElementById('grid-container');
 const clearGridBtn = document.getElementById('clear-grid-btn');
+const colorPicker = document.getElementById('color-picker');
 
 let gridSize = gridSizeSlider.valueAsNumber;
 let totalNumOfCells = gridSize * gridSize;
 let sliderValueDisplay = document.getElementById('slider-value');
-sliderValueDisplay.textContent = gridSize;
+sliderValueDisplay.textContent = `${gridSize} x ${gridSize}`;
 
-let activeMode;
+let activeMode = 'rainbow';
 let activeModeDisplay = document.getElementById('active-mode-display');
 activeModeDisplay.textContent = `${activeMode}`;
 
@@ -15,7 +16,7 @@ activeModeDisplay.textContent = `${activeMode}`;
 function getSliderValue() {
   gridSize = this.valueAsNumber;
   totalNumOfCells = gridSize * gridSize;
-  sliderValueDisplay.textContent = gridSize;
+  sliderValueDisplay.textContent = `${gridSize} x ${gridSize}`;
 }
 
 gridSizeSlider.oninput = getSliderValue;
@@ -38,8 +39,6 @@ function generateGrid() {
     cell.addEventListener('mousedown', changeBgColor);
     gridContainer.appendChild(cell);
   }
-  activeMode = 'rainbow';
-  activeModeDisplay.textContent = `${activeMode}`;
   gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
   gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 }
@@ -57,18 +56,26 @@ window.addEventListener('mouseup', () => {
 
 // main function for color changing
 function changeBgColor(e) {
-  // stop execution if both mouseover and mousedown events are not present
   if (e.type === 'mouseover' && !mouseDown) return;
-  if (activeMode === 'eraser') {
-    this.style.backgroundColor = '';
-  } else if (activeMode === 'black') {
-    this.style.backgroundColor = 'rgb(0,0,0)';
-  } else if (activeMode === 'lighten') {
-    this.style.backgroundColor = lighten(e);
-  } else if (activeMode === 'darken') {
-    this.style.backgroundColor = darken(e);
-  } else if (activeMode === 'rainbow') {
-    this.style.backgroundColor = generateRandColor();
+  switch (activeMode) {
+    case 'eraser':
+      this.style.backgroundColor = '';
+      break;
+    case 'black':
+      this.style.backgroundColor = 'rgb(0,0,0)';
+      break;
+    case 'lighten':
+      this.style.backgroundColor = lighten(e);
+      break;
+    case 'darken':
+      this.style.backgroundColor = darken(e);
+      break;
+    case 'rainbow':
+      this.style.backgroundColor = generateRandColor();
+      break;
+    case 'custom':
+      this.style.backgroundColor = colorPicker.value;
+      break;
   }
 }
 
@@ -106,30 +113,25 @@ function generateRandColor() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
+function setActiveMode(color) {
+  activeMode = color;
+  activeModeDisplay.textContent = `${color}`;
+}
+
 // set different coloring modes on click
-document.getElementById('eraser-btn').onclick = () => {
-  activeMode = 'eraser';
-  activeModeDisplay.textContent = `${activeMode}`;
-};
+document.getElementById('eraser-btn').onclick = () => setActiveMode('eraser');
+document.getElementById('black-btn').onclick = () => setActiveMode('black');
+document.getElementById('lighten-btn').onclick = () => setActiveMode('lighten');
+document.getElementById('darken-btn').onclick = () => setActiveMode('darken');
+document.getElementById('rainbow-btn').onclick = () => setActiveMode('rainbow');
+document.getElementById('color-picker').onchange = () => setActiveMode('custom');
 
-document.getElementById('black-btn').onclick = () => {
-  activeMode = 'black';
-  activeModeDisplay.textContent = `${activeMode}`;
-};
-
-document.getElementById('lighten-btn').onclick = () => {
-  activeMode = 'lighten';
-  activeModeDisplay.textContent = `${activeMode}`;
-};
-
-document.getElementById('darken-btn').onclick = () => {
-  activeMode = 'darken';
-  activeModeDisplay.textContent = `${activeMode}`;
-};
-
-document.getElementById('rainbow-btn').onclick = () => {
-  activeMode = 'rainbow';
-  activeModeDisplay.textContent = `${activeMode}`;
-};
+// toggle borders
+const allCells = gridContainer.children;
+document.getElementById('toggle-grid-btn').onclick = () => {
+  for (const cell of allCells) {
+    cell.classList.toggle('grid');
+  }
+}
 
 window.onload = generateGrid;

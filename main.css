@@ -1,7 +1,10 @@
 body {
     display: flex;
-    align-items: center;
     justify-content: center;
+}
+
+#main {
+    display: flex;
 }
 
 #grid-wrapper {
@@ -25,13 +28,13 @@ body {
 #controls-container {
     display: flex;
     flex-direction: column;
+    width: 300px;
 }
 
 #slider-container {
     display: flex;
     align-items: center;
     gap: 5px;
-    width: 240px;
 }
 
 .btn {

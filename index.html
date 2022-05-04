@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Etch-A-Sketch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div id="controls-container">
-        <div id="slider-container">
-            <label for="grid-size-slider">Grid size</label>
-            <input type="range" min="2" max="64" value="16" id="grid-size-slider">
-            <span id="slider-value"></span>
+    <div id="main">
+        <div id="controls-container">
+            <div id="slider-container">
+                <label for="grid-size-slider">Grid size: <span id="slider-value"></span></label>
+                <input type="range" min="2" max="64" value="16" id="grid-size-slider">
+            </div>
+            <div id="active-mode">Active mode: <span id="active-mode-display"></span></div>
+            <button class="btn" id="rainbow-btn">Rainbow</button>
+            <button class="btn" id="black-btn">Black</button>
+            <button class="btn" id="lighten-btn">Lighten</button>
+            <button class="btn" id="darken-btn">Darken</button>
+            <button class="btn" id="eraser-btn">Eraser</button>
+            <button class="btn" id="clear-grid-btn">Clear Grid</button>
+            <button class="btn" id="toggle-grid-btn">Toggle Borders</button>
+            <div id="color-picker-container">
+                <label for="color-picker">Custom color</label>
+                <input type="color" value="#FF0000" id="color-picker">
+            </div>
         </div>
-        <button class ="btn" id="rainbow-btn">Rainbow</button>
-        <button class ="btn" id="black-btn">Black</button>
-        <button class ="btn" id="lighten-btn">Lighten</button>
-        <button class ="btn" id="darken-btn">Darken</button>
-        <button class ="btn" id="eraser-btn">Eraser</button>
-        <button class ="btn" id="clear-grid-btn">Clear Grid</button>
-        <div>Active mode: <span id="active-mode-display"></span></div>
-    </div>
-    <div id="grid-wrapper">
-        <div id="grid-container"></div>
+        <div id="grid-wrapper">
+            <div id="grid-container"></div>
+        </div>
     </div>
 </body>
 </html>
