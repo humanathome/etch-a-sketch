@@ -13,3 +13,20 @@ before (e.g. 960px wide) so that you’ve got a new sketch pad.
 - (Optional): Instead of just changing the color of a square from black to white (for example), have each pass through 
 with the mouse change it to a completely random RGB value. Then try having each pass just add another 10% of black to 
 it so that only after 10 passes is the square completely black.
+
+### Changes and final result
+Resizing grid
+- replaced prompt with a grid size slider
+
+Cell coloring
+- cells are colored on mousedown & mouseover
+
+Coloring modes
+- added 'lighten' button
+- added 'eraser' button
+- added color picker
+
+Other
+- added a button for toggling the border on/off
+
+Live preview: https://humanathome.github.io/etch-a-sketch/
