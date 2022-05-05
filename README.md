@@ -30,3 +30,5 @@ Other
 - added a button for toggling the border on/off
 
 Live preview: https://humanathome.github.io/etch-a-sketch/
+
+![Sample img](https://www.dropbox.com/s/lp7ho8e8869qt6z/2022-05-05_16-41.png?raw=true)
