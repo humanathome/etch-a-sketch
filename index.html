@@ -10,12 +10,14 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <h1 id="lead">Etch-a-sketch</h1>
     <div id="main">
         <div id="controls-container">
-            <div id="slider-container">
-                <label for="grid-size-slider">Grid size: <span id="slider-value"></span></label>
-                <input type="range" min="2" max="64" value="16" id="grid-size-slider">
+            <div id="grid-size-info">
+                <div id="grid-size-text">Grid size:</div>
+                <span id="slider-value"></span>
             </div>
+            <input type="range" min="2" max="64" value="16" id="grid-size-slider">
             <div id="active-mode">Active mode: <span id="active-mode-display"></span></div>
             <button class="btn" id="rainbow-btn">Rainbow</button>
             <button class="btn" id="lighten-btn">Lighten</button>

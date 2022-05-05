@@ -1,14 +1,106 @@
 body {
-    display: flex;
-    justify-content: center;
+    text-align: center;
+    background-color: #fff3e4;
+}
+
+#lead {
+    font-family: 'Kalam', cursive, sans-serif;
+    font-size: 80px;
+    color: #fe6655;
+    margin: 35px;
 }
 
 #main {
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#controls-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    width: 300px;
+    gap: 15px;
+    font-size: 16px;
+}
+
+#grid-size-info {
+    display: flex;
+    color: #3d3d3d;
+    font-weight: bold;
+    width: 130px;
+    justify-content: space-between;
+}
+
+/* grid size slider */
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #c7c7c7;
+    width: 160px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background: #555555;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background: #555555;
+    cursor: pointer;
+}
+
+#active-mode {
+    color: #3d3d3d;
+    font-weight: bold;
+}
+
+.btn {
+    background-color: #41aec8;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 20px;
+    width: 160px;
+}
+
+.btn:hover {
+    box-shadow: 0 0 5px 3px #dadada;
+}
+
+/* color picker */
+input[type="color"] {
+    height: 70px;
+    width: 70px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 50%;
+}
+
+input[type="color"]::-moz-color-swatch {
+    border-radius: 50%;
 }
 
 #grid-wrapper {
-    outline-style: solid;
+    box-shadow: 0 0 20px 0 #aaaaaa;
     margin: 20px;
 }
 
@@ -16,39 +108,9 @@ body {
     height: 600px;
     width: 600px;
     display: grid;
-    padding: 0;
-    margin: 0;
     background-color: white;
 }
 
 .grid {
     border: 1px solid #dbdbdb;
-}
-
-#controls-container {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-}
-
-#slider-container {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.btn {
-    background-color: dodgerblue;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px 20px;
-    margin: 10px;
-    width: 150px;
-}
-
-.active {
-    border: 2px solid grey;
 }
