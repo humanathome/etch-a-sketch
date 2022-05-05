@@ -61,9 +61,6 @@ function changeBgColor(e) {
     case 'eraser':
       this.style.backgroundColor = '';
       break;
-    case 'black':
-      this.style.backgroundColor = 'rgb(0,0,0)';
-      break;
     case 'lighten':
       this.style.backgroundColor = lighten(e);
       break;
@@ -120,11 +117,10 @@ function setActiveMode(color) {
 
 // set different coloring modes on click
 document.getElementById('eraser-btn').onclick = () => setActiveMode('eraser');
-document.getElementById('black-btn').onclick = () => setActiveMode('black');
 document.getElementById('lighten-btn').onclick = () => setActiveMode('lighten');
 document.getElementById('darken-btn').onclick = () => setActiveMode('darken');
 document.getElementById('rainbow-btn').onclick = () => setActiveMode('rainbow');
-document.getElementById('color-picker').onchange = () => setActiveMode('custom');
+document.getElementById('custom-color-btn').onclick = () => setActiveMode('custom');
 
 // toggle borders
 const allCells = gridContainer.children;
